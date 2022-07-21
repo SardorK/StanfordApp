@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+
     var count = 0 {
         didSet{
             flipLabel.text = "Flips: \(count)"
@@ -72,7 +72,6 @@ class ViewController: UIViewController {
         
         return view
     }()
-    
     
     func makeButton()->UIButton{
         let view = UIButton(frame: .zero)
