@@ -13,8 +13,15 @@ class Card{
     var isMatched = false
     var identifier: Int
     
-    init(identefier: Int){
-        self.identifier = identefier
+    static var identifierFactory = 0
+    
+    static func getUniqueIdentefier()->Int{
+        identifierFactory += 1
+        return identifierFactory
+    }
+    
+    init(){
+        self.identifier = Card.getUniqueIdentefier()
     }
     
 }
