@@ -16,6 +16,8 @@
 		18A5620328894D6000D3585E /* StanfordAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A5620228894D6000D3585E /* StanfordAppTests.swift */; };
 		18A5620D28894D6000D3585E /* StanfordAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A5620C28894D6000D3585E /* StanfordAppUITests.swift */; };
 		18A5620F28894D6000D3585E /* StanfordAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A5620E28894D6000D3585E /* StanfordAppUITestsLaunchTests.swift */; };
+		18AEA8C6288A241C0065AA54 /* Concentration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AEA8C5288A241C0065AA54 /* Concentration.swift */; };
+		18AEA8C8288A246B0065AA54 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AEA8C7288A246B0065AA54 /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		18A5620828894D6000D3585E /* StanfordAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StanfordAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18A5620C28894D6000D3585E /* StanfordAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StanfordAppUITests.swift; sourceTree = "<group>"; };
 		18A5620E28894D6000D3585E /* StanfordAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StanfordAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		18AEA8C5288A241C0065AA54 /* Concentration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concentration.swift; sourceTree = "<group>"; };
+		18AEA8C7288A246B0065AA54 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 				18A561F428894D6000D3585E /* Assets.xcassets */,
 				18A561F628894D6000D3585E /* LaunchScreen.storyboard */,
 				18A561F928894D6000D3585E /* Info.plist */,
+				18AEA8C5288A241C0065AA54 /* Concentration.swift */,
+				18AEA8C7288A246B0065AA54 /* Card.swift */,
 			);
 			path = StanfordApp;
 			sourceTree = "<group>";
@@ -259,6 +265,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				18A561F028894D5C00D3585E /* ViewController.swift in Sources */,
+				18AEA8C6288A241C0065AA54 /* Concentration.swift in Sources */,
+				18AEA8C8288A246B0065AA54 /* Card.swift in Sources */,
 				18A561EC28894D5C00D3585E /* AppDelegate.swift in Sources */,
 				18A561EE28894D5C00D3585E /* SceneDelegate.swift in Sources */,
 			);

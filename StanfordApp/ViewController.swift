@@ -8,7 +8,9 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    var game: Concentration = Concentration()
+    
     var count = 0 {
         didSet{
             flipLabel.text = "Flips: \(count)"
@@ -17,9 +19,12 @@ class ViewController: UIViewController {
     var images: [String] = ["👻","⚡️","😈","🐺","🎃","💀","👻","⚡️","😈","🐺","🎃","💀"]
     
     lazy var buttons: [UIButton] = {
-        return [makeButton(),makeButton(),makeButton(),makeButton(),
-                makeButton(),makeButton(),makeButton(),makeButton(),
-                makeButton(),makeButton(),makeButton(),makeButton(),]
+        var buttons: [UIButton] = []
+        for tag in 0...11{
+            let button = makeButton(withTag: tag)
+            buttons.append(button)
+        }
+        return buttons
     }()
     
     lazy var stackLine1: UIStackView = {
@@ -73,11 +78,12 @@ class ViewController: UIViewController {
         return view
     }()
     
-    func makeButton()->UIButton{
+    func makeButton(withTag tag: Int)->UIButton{
         let view = UIButton(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.titleLabel?.font = UIFont.systemFont(ofSize: 40.0)
         view.backgroundColor = .orange
+        view.tag = tag
         view.setTitle("", for: .normal)
         view.addTarget(self, action: #selector(flipCard), for: .touchUpInside)
                 
@@ -85,9 +91,9 @@ class ViewController: UIViewController {
     }
     
     @objc func flipCard(button: UIButton){
-        count += 1
+        
         if button.currentTitle == ""{
-            setImageButtons()
+            button.setTitle(images[button.tag], for: .normal)
             button.backgroundColor = .white
         }else{
             button.setTitle("", for: .normal)
@@ -95,8 +101,9 @@ class ViewController: UIViewController {
         }
     }
     
-    func setImageButtons(){
-        buttons.enumerated().forEach{ $1.setTitle(images[$0], for: .normal)}
+    func setImageButtons(button: UIButton){
+//        buttons.enumerated().forEach{ $1.setTitle(images[$0], for: .normal)}
+        button.setTitle(images[button.tag], for: .normal)
     }
     
     override func viewDidLoad() {
