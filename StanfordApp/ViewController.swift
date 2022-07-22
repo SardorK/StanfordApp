@@ -9,19 +9,18 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    var game: Concentration = Concentration()
+    lazy var game: Concentration = Concentration(numberOfPairsOfCards: buttons.count)
     
     var count = 0 {
         didSet{
             flipLabel.text = "Flips: \(count)"
         }
     }
-    var images: [String] = ["👻","⚡️","😈","🐺","🎃","💀","👻","⚡️","😈","🐺","🎃","💀"]
     
     lazy var buttons: [UIButton] = {
         var buttons: [UIButton] = []
-        for tag in 0...11{
-            let button = makeButton(withTag: tag)
+        for i in 0...11{
+            let button = makeButton()
             buttons.append(button)
         }
         return buttons
@@ -78,33 +77,57 @@ class ViewController: UIViewController {
         return view
     }()
     
-    func makeButton(withTag tag: Int)->UIButton{
+    func makeButton()->UIButton{
         let view = UIButton(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.titleLabel?.font = UIFont.systemFont(ofSize: 40.0)
         view.backgroundColor = .orange
-        view.tag = tag
         view.setTitle("", for: .normal)
         view.addTarget(self, action: #selector(flipCard), for: .touchUpInside)
                 
         return view
     }
     
+    
+    
     @objc func flipCard(button: UIButton){
-        
-        if button.currentTitle == ""{
-            button.setTitle(images[button.tag], for: .normal)
-            button.backgroundColor = .white
+        if let cardNumber = buttons.index(of: button){
+            game.choseCard(at: cardNumber)
+            updateViewFromModel()
         }else{
-            button.setTitle("", for: .normal)
-            button.backgroundColor = .orange
+            print("s")
         }
     }
     
-    func setImageButtons(button: UIButton){
-//        buttons.enumerated().forEach{ $1.setTitle(images[$0], for: .normal)}
-        button.setTitle(images[button.tag], for: .normal)
+    func updateViewFromModel(){
+        for index in buttons.indices{
+            let button = buttons[index]
+            let card = game.cards[index]
+            if card.isFacedUp{
+                button.setTitle(emoji(for: card), for: .normal)
+                button.backgroundColor = .white
+            }else{
+                button.setTitle("", for: .normal)
+                button.backgroundColor = card.isMatched ? .clear : .orange
+            }
+        }
     }
+    
+    var images: [String] = ["👻","⚡️","😈","🐺","🎃","💀","👻","⚡️","😈","🐺","🎃","💀"]
+    var emoji = [Int:String]()
+    
+    func emoji(for card: Card)->String{
+        if emoji[card.identifier] == nil,images.count > 0{
+            let randomIndex = Int(arc4random_uniform(UInt32(images.count)))
+            emoji[card.identifier] = images.remove(at: randomIndex)
+        }
+        return emoji[card.identifier] ?? "?"
+    }
+    
+//    func setImageButtons(button: UIButton){
+////        buttons.enumerated().forEach{ $1.setTitle(images[$0], for: .normal)}
+//        button.setTitle(images[button.tag], for: .normal)
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
